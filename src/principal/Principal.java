@@ -12,43 +12,50 @@ public class Principal {
 
         while (true) {
 
-            String opcao = JOptionPane.showInputDialog(null, "Escolha uma opção ", "Menu", JOptionPane.PLAIN_MESSAGE, null, new Object[]{"Conversor de Moeda", "Conversor de Temperatura"}, "Escolha").toString();
+        	String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opção ", "Menu", JOptionPane.PLAIN_MESSAGE, null, 
+        			new Object[]{"Conversor de Moeda", "Conversor de Temperatura"}, "Escolha");
 
-            switch (opcao) {
-                case "Conversor de Moeda":
-                    String input = JOptionPane.showInputDialog("Insira um valor: ");
-                    if (checar(input)) {
-                        double valorRecebido = Double.parseDouble(input);
-                        moedas.converterMoeda(valorRecebido);
+        			if (opcao != null) { // Verificar se a opção não é nula
+        			    switch (opcao) {
+        			    case "Conversor de Moeda":
+                            String input = JOptionPane.showInputDialog("Insira um valor: ");
+                            if (checar(input)) {
+                                double valorRecebido = Double.parseDouble(input);
+                                moedas.converterMoeda(valorRecebido);
 
-                        int resposta = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
-                        if (JOptionPane.OK_OPTION == resposta) {
-                            System.out.println("Escolha opção Afirmativa");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Programa finalizado");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Valor inválido");
-                    }
-                    break;
-                case "Conversor de Temperatura":
-                    input = JOptionPane.showInputDialog("Insira um valor de temperatura para converter");
-                    if (checar(input)) {
-                        double valorRecebido = Double.parseDouble(input);
-                        temperatura.converterTemperatura(valorRecebido);
+                                int resposta = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
+                                if (JOptionPane.OK_OPTION == resposta) {
+                                    System.out.println("Escolha opção Afirmativa");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Programa finalizado");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Valor inválido");
+                            }
+                            break;
+                        case "Conversor de Temperatura":
+                            input = JOptionPane.showInputDialog("Insira um valor de temperatura para converter");
+                            if (checar(input)) {
+                                double valorRecebido = Double.parseDouble(input);
+                                temperatura.converterTemperatura(valorRecebido);
 
-                        int resposta = 0;
-                        resposta = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
-                        if ((resposta == 0) && (checar(input))) {
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Programa finalizado");
-                        }
+                                int resposta = 0;
+                                resposta = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
+                                if ((resposta == 0) && (checar(input))) {
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Programa finalizado");
+                                }
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Valor inválido");
-                    }
-                    break;
-            }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Valor inválido");
+                            }
+                            break;
+        			    }
+        			} else {
+        			    JOptionPane.showMessageDialog(null, "Programa finalizado");
+        			    System.exit(0); // Encerrar o programa se o usuário cancelar
+        			}
+            
         }
     }
 
